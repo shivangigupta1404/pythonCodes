@@ -9,7 +9,7 @@ def linear_search(list,key):
 def binary_search(l,key):
     list=l[:]
     list.sort()
-    print "sorted list used in binary search : ",list
+    #print "sorted list used in binary search : ",list
     l,r=0,len(list)-1
     while l<=r:
         mid=(l+r)/2
@@ -24,7 +24,7 @@ def binary_search(l,key):
 def jump_search(l,key):
     list=l[:]
     list.sort()
-    print "sorted list used in jump search : ",list
+    #print "sorted list used in jump search : ",list
     n=len(list)
     m=int(sqrt(n))
     flag,found=0,0
@@ -52,31 +52,26 @@ def jump_search(l,key):
 def exp_search(l,key):
     list=l[:]
     list.sort()
-    print "sorted list used in exponential search : ",list
+    #print "sorted list used in exponential search : ",list
     i,found=1,0
     if list[0]==key:
         return 0
     while i<len(list) and list[i]<=key:
         i*=2
-    if i>=len(list):
-        return -1
-    if list[i]==key:
-        return i
-    else:
-        pos=binary_search(list[i/2:i],key)
-        if pos!=-1:
-            return (i/2)+pos
-        return pos
+    pos=binary_search(list[i/2:min(i,len(list))],key)
+    if pos!=-1:
+        return (i/2)+pos
+    return pos
         
 def ternary_search(l,key):
     list=l[:]
     list.sort()
-    print "sorted list used in ternary search : ",list
+    #print "sorted list used in ternary search : ",list
     l,r=0,len(list)-1
     while l<=r:
         mid1=l+(r-l)/3
         mid2=l+(2*(r-l))/3
-        print "mid1 is : ",mid1," mid2 is : ",mid2," list under consideration : ",list[l:r+1]
+        #print "mid1 is : ",mid1," mid2 is : ",mid2," list under consideration : ",list[l:r+1]
         if list[mid1]==key:
             return mid1
         if list[mid2]==key:
